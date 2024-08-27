@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static',filename='css/output.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <title>Bank</title>
+</head>
+
+<body>
+    <section class="py-2 bg-white">
+        <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
+            <div class="main-data p-4 sm:p-10 bg-gray-50 rounded-3xl">
+                <h2 class="text-center font-manrope font-semibold text-4xl text-black mb-16">Transaction History</h2>
+                <div class="grid grid-cols-8 pb-9">
+                    <div class="col-span-8 lg:col-span-4">
+                        <p class="font-medium text-lg leading-6 text-emerald-600">Txn. Id </p>
+                    </div>
+                    <div class="col-span-1 max-lg:hidden">
+                        <p class="font-medium text-lg leading-6 text-gray-600 text-center">Amount </p>
+                    </div>
+                    <div class="col-span-1 max-lg:hidden flex items-center justify-center">
+                        <p class="font-medium text-lg leading-6 text-gray-600">Acc.Id </p>
+                    </div>
+                    <div class="col-span-2 max-lg:hidden">
+                        <p class="font-medium text-lg leading-6 text-gray-500">Transaction Timestamp </p>
+                    </div>
+                </div>
+                <div
+                    class="box p-8 rounded-3xl bg-gray-100 grid grid-cols-8 mb-7 cursor-pointer transition-all duration-500 hover:bg-emerald-50 max-lg:max-w-xl max-lg:mx-auto">
+
+                    <div class="col-span-8 sm:col-span-4 lg:col-span-1 sm:row-span-4 lg:row-span-1">
+                        <img src="https://w7.pngwing.com/pngs/1022/32/png-transparent-shopping-cart-icon-shopping-cart-logo-icon-shopping-cart-label-coffee-shop-shopping-mall.png"
+                            alt="earbuds image" class="max-lg:w-auto max-sm:mx-auto rounded-xl">
+                    </div>
+                    <div
+                        class="col-span-8 sm:col-span-4 lg:col-span-3 flex h-full justify-center pl-4 flex-col max-lg:items-center">
+                        <h5 class="font-manrope font-semibold text-2xl leading-9 text-black mb-1 whitespace-nowrap">
+                            Shopping</h5>
+                        <p class="font-normal text-base leading-7 text-gray-600 max-md:text-center">Place id</p>
+                    </div>
+
+                    <div class="col-span-8 sm:col-span-4 lg:col-span-1 flex items-center justify-center">
+                        <p class="font-semibold text-xl leading-8 text-black">$249.99</p>
+                    </div>
+                    <div class="col-span-8 sm:col-span-4 lg:col-span-1 flex items-center justify-center ">
+                        <p class="font-semibold text-xl leading-8 text-emerald-600 text-center">2</p>
+                    </div>
+                    <div class="col-span-8 sm:col-span-4 lg:col-span-2 flex items-center justify-center ">
+                        <p class="font-semibold text-xl leading-8 text-black">23rd March 2021</p>
+                    </div>
+
+                </div>
+            </div>
+    </section>
+</body>
+
+</html>

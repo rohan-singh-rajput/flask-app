@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{url_for('static',filename='css/output.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <title>Bank</title>
-</head>
+{% include 'layout.html' %}
 
 <body>
     <section class="py-2 bg-white">
         <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
             <div class="main-data p-4 sm:p-10 bg-gray-50 rounded-3xl">
-                <h2 class="text-center font-manrope font-semibold text-4xl text-black mb-16">Transaction History</h2>
+                <h2 class="text-center font-manrope font-semibold text-4xl text-black mb-16">Transaction History of {{
+                    name }}</h2>
                 <div class="grid grid-cols-8 pb-9">
                     <div class="col-span-8 lg:col-span-4">
                         <p class="font-medium text-lg leading-6 text-emerald-600">Txn. Id </p>
@@ -39,7 +31,7 @@
                         class="col-span-8 sm:col-span-4 lg:col-span-3 flex h-full justify-center pl-4 flex-col max-lg:items-center">
                         <h5 class="font-manrope font-semibold text-2xl leading-9 text-black mb-1 whitespace-nowrap">
                             Shopping</h5>
-                        <p class="font-normal text-base leading-7 text-gray-600 max-md:text-center">Place id</p>
+                        <p class="font-normal text-base leading-7 text-gray-600 max-md:text-center">{{ name }}</p>
                     </div>
 
                     <div class="col-span-8 sm:col-span-4 lg:col-span-1 flex items-center justify-center">

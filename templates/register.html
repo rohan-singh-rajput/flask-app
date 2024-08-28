@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{url_for('static',filename='css/output.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
-    <title>Bank</title>
-</head>
+{% include 'layout.html' %}
 
 <body>
     <div class=" flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -69,7 +59,8 @@
 
             <p class="mt-10 text-center text-sm text-gray-500">
                 Already a member?
-                <a href="login" class="font-semibold leading-6 text-emerald-600 hover:text-emerald-500">Sign in</a>
+                <a href="{{url_for('login')}}"
+                    class="font-semibold leading-6 text-emerald-600 hover:text-emerald-500">Sign in</a>
             </p>
         </div>
     </div>

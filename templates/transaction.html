@@ -1,13 +1,17 @@
 {% include 'layout.html' %}
 
 <body>
+
+    {% if name is defined and name|length > 0 %}
     <section class="py-2 bg-white">
         <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
-            <div class="main-data p-4 sm:p-10 bg-gray-50 rounded-3xl">
-                <h2 class="text-center font-manrope font-semibold text-4xl text-black mb-16">Transaction History of {{
-                    name }}</h2>
+            <div class="main-data p-4 sm:p-10 bg-gray-50 rounded-2xl">
+                <h2 class="text-center font-manrope font-semibold text-4xl text-black mb-16">Transaction History of
+                    <span class="text-emerald-600">{{
+                        name[0][5] }}</span>
+                </h2>
                 <div class="grid grid-cols-8 pb-9">
-                    <div class="col-span-8 lg:col-span-4">
+                    <div class="col-span-8 lg:col-span-3">
                         <p class="font-medium text-lg leading-6 text-emerald-600">Txn. Id </p>
                     </div>
                     <div class="col-span-1 max-lg:hidden">
@@ -19,34 +23,57 @@
                     <div class="col-span-2 max-lg:hidden">
                         <p class="font-medium text-lg leading-6 text-gray-500">Transaction Timestamp </p>
                     </div>
+                    <div class="col-span-1 max-lg:hidden">
+                        <p class="font-medium text-lg leading-6 text-gray-500">Account Balance </p>
+                    </div>
                 </div>
+
+                {% for item in name %}
                 <div
                     class="box p-8 rounded-3xl bg-gray-100 grid grid-cols-8 mb-7 cursor-pointer transition-all duration-500 hover:bg-emerald-50 max-lg:max-w-xl max-lg:mx-auto">
-
-                    <div class="col-span-8 sm:col-span-4 lg:col-span-1 sm:row-span-4 lg:row-span-1">
-                        <img src="https://w7.pngwing.com/pngs/1022/32/png-transparent-shopping-cart-icon-shopping-cart-logo-icon-shopping-cart-label-coffee-shop-shopping-mall.png"
-                            alt="earbuds image" class="max-lg:w-auto max-sm:mx-auto rounded-xl">
-                    </div>
+                    <!-- 
+                        <div class="col-span-8 sm:col-span-4 lg:col-span-1 sm:row-span-4 lg:row-span-1">
+                           <img src="{{url_for('static',filename='assets/dot.png')}}" alt="."
+                                class="max-lg:w-auto max-sm:mx-auto rounded-xl"> 
+                        </div> -->
                     <div
-                        class="col-span-8 sm:col-span-4 lg:col-span-3 flex h-full justify-center pl-4 flex-col max-lg:items-center">
-                        <h5 class="font-manrope font-semibold text-2xl leading-9 text-black mb-1 whitespace-nowrap">
-                            Shopping</h5>
-                        <p class="font-normal text-base leading-7 text-gray-600 max-md:text-center">{{ name }}</p>
+                        class="col-span-8 sm:col-span-3 lg:col-span-3 flex h-full justify-center pl-4 flex-col max-lg:items-center">
+                        <h5 class="font-manrope font-semibold text-l leading-9 text-black mb-1 whitespace-nowrap">
+                            {{
+                            item[10] }}</h5>
+                        <p class="font-normal text-base leading-7 text-gray-600 max-md:text-center">{{ item[12] }}</p>
                     </div>
 
-                    <div class="col-span-8 sm:col-span-4 lg:col-span-1 flex items-center justify-center">
-                        <p class="font-semibold text-xl leading-8 text-black">$249.99</p>
+                    <div class="col-span-8 sm:col-span-3 lg:col-span-1 flex items-center justify-center">
+                        <p class="font-semibold text-xl leading-8 text-black">₹{{ item[13] }}</p>
                     </div>
-                    <div class="col-span-8 sm:col-span-4 lg:col-span-1 flex items-center justify-center ">
-                        <p class="font-semibold text-xl leading-8 text-emerald-600 text-center">2</p>
+                    <div class="col-span-8 sm:col-span-3 lg:col-span-1 flex items-center justify-center ">
+                        <p class="font-semibold text-xl leading-8 text-emerald-600 text-center">{{ item[1] }}</p>
                     </div>
-                    <div class="col-span-8 sm:col-span-4 lg:col-span-2 flex items-center justify-center ">
-                        <p class="font-semibold text-xl leading-8 text-black">23rd March 2021</p>
+                    <div class="col-span-8 sm:col-span-3 lg:col-span-2 flex items-center justify-center ">
+                        <p class="font-semibold text-xl leading-8 text-black"> {{ item[14] }}</p>
                     </div>
-
+                    <div class="col-span-8 sm:col-span-3 lg:col-span-1 flex items-center justify-center ">
+                        <p class="font-semibold text-xl leading-8 text-black"> {{ item[3] }}</p>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
     </section>
+
+    {% else %}
+    <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="text-center">
+            <p class="text-base font-semibold text-emerald-600">Empty List</p>
+            <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">No Transactions found</h1>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+                <a href="/"
+                    class="rounded-md bg-emerald-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">Go
+                    back home</a>
+            </div>
+        </div>
+    </main>
+    {% endif %}
 </body>
 
 </html>

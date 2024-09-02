@@ -13,9 +13,9 @@ try:
     message = 'Connected successfully!'
     print(message)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM customer")
-    results = cursor.fetchall()
-    print(results)
+    # cursor.execute("SELECT * FROM customer")
+    # results = cursor.fetchall()
+    # print(results)
     
 except:
     results = ["*"]
@@ -32,15 +32,13 @@ def main():
     
     return render_template('index.html',name = name)
 
-@app.route("/transactions",methods=['GET','POST'])
+@app.route("/transactions",methods=['GET'])
 def transactions(name):
-    query = 'SELECT * FROM banking.transaction as t , banking.account from b WHERE t.account_id = b.account_id'
-    name = name
     return render_template('transaction.html',name = name)
 
 
 def login_user(email,password):
-    query = "SELECT * FROM banking.customer WHERE email = %s AND password = %s"
+    query = "SELECT customerID FROM banking.customer WHERE email = %s AND password = %s"
     values = (email,password)
     cursor.execute(query,values)
     result = cursor.fetchone()
@@ -53,18 +51,26 @@ def login():
         email= request.form['email']
         password = request.form['password']
         res = login_user(email,password)
-        print(res)
+        print("id :" , res[0])
         
-        logged_in = 1
+        logged_in = 0
         
+        if res[0]!='':
+            logged_in = 1
         
         # get username 
-        cursor.execute('SELECT username FROM banking.customer where email = %s AND password = %s',(email,password))
+        cursor.execute('SELECT customerID ,username FROM banking.customer where email = %s AND password = %s',(email,password))
         name = cursor.fetchone()
+        
+        
         if logged_in == 1:
-            return render_template('transaction.html',name = name[0])
+            query = 'SELECT * FROM account as a , customer as c, transaction as d WHERE c.customerID= %s AND a.CustomerID = c.customerID AND a.AccountID = d.AccountID;'
+            cursor.execute(query,[name[0]])
+            res = cursor.fetchall()
+            conn.commit()
+            print(res)
+            return transactions(res)
             
-    
     return render_template('login.html')
 
 
@@ -90,5 +96,10 @@ def register():
 @app.errorhandler(404) 
 def not_found(e):
     return render_template('error.html')
+
+@app.route("/no_txns")
+def no_elements():
+    return render_template('empty_list.html')
+
 
 app.run(debug=True)

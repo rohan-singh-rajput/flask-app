@@ -20,7 +20,7 @@ except:
     print(message)
 
 
-# Track session ,currently inactive 
+# Tracks session,currently not implemented
 logged_in = 0 
 
 # entry
@@ -74,7 +74,7 @@ def login():
             
     return render_template('login.html')
 
-# new_user add support
+# new_user support func
 def add_new_user(name,username,phone_no,email,password):
     query = "INSERT INTO banking.customer (name,phone_no,email,password,username) VALUES (%s, %s, %s, %s, %s)"
     values= (name, phone_no, email, password, username)
@@ -95,7 +95,7 @@ def register():
     return render_template('register.html')
 
 
-# invalid endpoints
+# handles invalid endpoints
 @app.errorhandler(404) 
 def not_found(e):
     return render_template('error.html')

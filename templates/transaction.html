@@ -2,13 +2,13 @@
 
 <body>
 
-    {% if name is defined and name|length > 0 %}
+    {% if name.transactions is defined and name|length > 0 %}
     <section class="py-2 bg-white">
         <div class="w-full max-w-7xl mx-auto px-4 md:px-8">
             <div class="main-data p-4 sm:p-10 bg-gray-50 rounded-2xl">
                 <h2 class="text-center font-manrope font-semibold text-4xl text-black mb-16">Transaction History of
-                    <span class="text-emerald-600">{{
-                        name[0][5] }}</span>
+                    <span class="text-emerald-600">
+                        {{user.name}} </span>
                 </h2>
                 <div class="grid grid-cols-8 pb-9">
                     <div class="col-span-8 lg:col-span-3">
@@ -17,18 +17,19 @@
                     <div class="col-span-1 max-lg:hidden">
                         <p class="font-medium text-lg leading-6 text-gray-600 text-center">Amount </p>
                     </div>
-                    <div class="col-span-1 max-lg:hidden flex items-center justify-center">
-                        <p class="font-medium text-lg leading-6 text-gray-600">Acc.Id </p>
-                    </div>
+
                     <div class="col-span-2 max-lg:hidden">
                         <p class="font-medium text-lg leading-6 text-gray-500">Transaction Timestamp </p>
+                    </div>
+                    <div class="col-span-1 max-lg:hidden flex items-center justify-center">
+                        <p class="font-medium text-lg leading-6 text-gray-600">Acc.Id </p>
                     </div>
                     <div class="col-span-1 max-lg:hidden">
                         <p class="font-medium text-lg leading-6 text-gray-500">Account Balance </p>
                     </div>
                 </div>
 
-                {% for item in name %}
+                {% for item in name.transactions %}
                 <div
                     class="box p-8 rounded-3xl bg-gray-100 grid grid-cols-8 mb-7 cursor-pointer transition-all duration-500 hover:bg-emerald-50 max-lg:max-w-xl max-lg:mx-auto">
                     <!-- 
@@ -40,22 +41,28 @@
                         class="col-span-8 sm:col-span-3 lg:col-span-3 flex h-full justify-center pl-4 flex-col max-lg:items-center">
                         <h5 class="font-manrope font-semibold text-l leading-9 text-black mb-1 whitespace-nowrap">
                             {{
-                            item[10] }}</h5>
+                            item.TransactionID }}</h5>
                         <p class="font-normal text-base leading-7 text-gray-600 max-md:text-center">{{ item[12] }}</p>
                     </div>
 
                     <div class="col-span-8 sm:col-span-3 lg:col-span-1 flex items-center justify-center">
-                        <p class="font-semibold text-xl leading-8 text-black">₹{{ item[13] }}</p>
+                        <p class="font-semibold text-xl leading-8 text-black">₹{{ item.Amount }}</p>
                     </div>
-                    <div class="col-span-8 sm:col-span-3 lg:col-span-1 flex items-center justify-center ">
-                        <p class="font-semibold text-xl leading-8 text-emerald-600 text-center">{{ item[1] }}</p>
-                    </div>
+
                     <div class="col-span-8 sm:col-span-3 lg:col-span-2 flex items-center justify-center ">
-                        <p class="font-semibold text-xl leading-8 text-black"> {{ item[14] }}</p>
+                        <p class="font-semibold text-xl leading-8 text-black"> {{ item.Timestamp }}</p>
                     </div>
+                    
+                    
                     <div class="col-span-8 sm:col-span-3 lg:col-span-1 flex items-center justify-center ">
-                        <p class="font-semibold text-xl leading-8 text-black"> {{ item[3] }}</p>
+                        <p class="font-semibold text-xl leading-8 text-emerald-600 text-center">{{item.AccountID }}</p>
                     </div>
+                    
+                </div>
+                {% endfor %}
+                {% for item in name.accounts %}
+                <div class="col-span-8 sm:col-span-3 lg:col-span-1 flex items-center justify-center ">
+                    <p class="font-semibold text-xl leading-8 text-black"> {{ item.Balance}}</p>
                 </div>
                 {% endfor %}
             </div>
